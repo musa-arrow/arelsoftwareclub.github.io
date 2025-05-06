@@ -6,6 +6,7 @@ darkModeToggle.addEventListener('click', () => {
     body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
     localStorage.setItem('theme', body.getAttribute('data-theme'));
     updateDarkModeIcon();
+    saveUserData(); // Tüm site verilerini kaydet
 });
 
 // Mobil Menü
@@ -100,6 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const email = newsletterForm.querySelector('input[type="email"]').value;
             if (validateEmail(email)) {
+                const subscribers = JSON.parse(localStorage.getItem('newsletterSubscribers')) || [];
+                subscribers.push(email);
+                localStorage.setItem('newsletterSubscribers', JSON.stringify(subscribers));
+                saveUserData(); // Tüm site verilerini kaydet
                 showNotification('Bülten aboneliğiniz başarıyla gerçekleşti!', 'success');
                 newsletterForm.reset();
             } else {
@@ -256,165 +261,6 @@ function loadAnnouncements() {
 // Duyuruları yükle
 loadAnnouncements();
 
-// Google Maps Entegrasyonu
-function initMap() {
-    const arelLocation = { lat: 41.05533, lng: 28.50024 }; // İstanbul Arel Üniversitesi Tepekent Kampüsü koordinatları
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 16,
-        center: arelLocation,
-        styles: [
-            {
-                "featureType": "all",
-                "elementType": "geometry",
-                "stylers": [{"color": "#f5f5f5"}]
-            },
-            {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [{"color": "#e9e9e9"}]
-            }
-        ]
-    });
-
-    const marker = new google.maps.Marker({
-        position: arelLocation,
-        map: map,
-        title: 'İstanbul Arel Üniversitesi Tepekent Kampüsü'
-    });
-
-    const infoWindow = new google.maps.InfoWindow({
-        content: `
-            <div class="map-info-window">
-                <h3>İstanbul Arel Üniversitesi</h3>
-                <p>Tepekent Kampüsü</p>
-                <p>Tepekent Mah. Erguvan Sok. No:26</p>
-                <p>Küçükçekmece/İstanbul</p>
-            </div>
-        `
-    });
-
-    marker.addListener('click', () => {
-        infoWindow.open(map, marker);
-    });
-}
-
-// Harita stilleri
-const lightMapStyle = [
-    {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [{"color": "#7c93a3"},{"lightness": "-10"}]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "labels.text.fill",
-        "stylers": [{"color": "#444444"}]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "all",
-        "stylers": [{"color": "#f2f2f2"}]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "all",
-        "stylers": [{"visibility": "off"}]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [{"saturation": "-100"},{"lightness": "45"}]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [{"visibility": "simplified"}]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "labels.icon",
-        "stylers": [{"visibility": "off"}]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "all",
-        "stylers": [{"visibility": "off"}]
-    },
-    {
-        "featureType": "water",
-        "elementType": "all",
-        "stylers": [{"color": "#46bcec"},{"visibility": "on"}]
-    }
-];
-
-const darkMapStyle = [
-    {
-        "featureType": "all",
-        "elementType": "labels.text.fill",
-        "stylers": [{"color": "#ffffff"}]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.text.stroke",
-        "stylers": [{"visibility": "on"},{"color": "#000000"},{"lightness": 16}]
-    },
-    {
-        "featureType": "all",
-        "elementType": "labels.icon",
-        "stylers": [{"visibility": "off"}]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry.fill",
-        "stylers": [{"color": "#000000"},{"lightness": 20}]
-    },
-    {
-        "featureType": "administrative",
-        "elementType": "geometry.stroke",
-        "stylers": [{"color": "#000000"},{"lightness": 17},{"weight": 1.2}]
-    },
-    {
-        "featureType": "landscape",
-        "elementType": "geometry",
-        "stylers": [{"color": "#000000"},{"lightness": 20}]
-    },
-    {
-        "featureType": "poi",
-        "elementType": "geometry",
-        "stylers": [{"color": "#000000"},{"lightness": 21}]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
-        "stylers": [{"color": "#000000"},{"lightness": 17}]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "geometry.stroke",
-        "stylers": [{"color": "#000000"},{"lightness": 29},{"weight": 0.2}]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry",
-        "stylers": [{"color": "#000000"},{"lightness": 18}]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry",
-        "stylers": [{"color": "#000000"},{"lightness": 16}]
-    },
-    {
-        "featureType": "transit",
-        "elementType": "geometry",
-        "stylers": [{"color": "#000000"},{"lightness": 19}]
-    },
-    {
-        "featureType": "water",
-        "elementType": "geometry",
-        "stylers": [{"color": "#000000"},{"lightness": 17}]
-    }
-];
-
 // Login Modal İşlevselliği
 const loginBtn = document.getElementById('loginBtn');
 const registerBtn = document.getElementById('registerBtn');
@@ -556,6 +402,63 @@ function addTeamMember(memberData) {
     `;
     
     teamGrid.appendChild(memberElement);
+
+    // Takım üyelerini localStorage'a kaydet
+    saveTeamMembers();
+}
+
+// Takım üyelerini localStorage'a kaydet
+function saveTeamMembers() {
+    const teamMembers = [];
+    document.querySelectorAll('.team-member').forEach(member => {
+        teamMembers.push({
+            name: member.querySelector('h4').textContent,
+            department: member.querySelector('p:not(.member-role)').textContent,
+            role: member.querySelector('.member-role').textContent,
+            photo: member.querySelector('img') ? member.querySelector('img').src : null
+        });
+    });
+    localStorage.setItem('teamMembers', JSON.stringify(teamMembers));
+}
+
+// Takım üyelerini localStorage'dan yükle
+function loadTeamMembers() {
+    const teamMembers = JSON.parse(localStorage.getItem('teamMembers')) || [];
+    const teamGrid = document.querySelector('#team .team-grid');
+    
+    if (teamGrid) {
+        teamGrid.innerHTML = ''; // Mevcut üyeleri temizle
+        
+        teamMembers.forEach(member => {
+            const memberElement = document.createElement('div');
+            memberElement.className = 'team-member';
+            
+            // İsimden baş harfleri al
+            const initials = member.name
+                .split(' ')
+                .map(word => word[0])
+                .join('')
+                .toUpperCase();
+            
+            // Rastgele renk oluştur
+            const colors = ['#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#34495e', '#16a085', '#27ae60', '#2980b9', '#8e44ad', '#2c3e50'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            // Fotoğraf veya baş harfler
+            const photoContent = member.photo 
+                ? `<img src="${member.photo}" alt="${member.name}">`
+                : `<div class="initials-avatar" style="background-color: ${randomColor}">${initials}</div>`;
+            
+            memberElement.innerHTML = `
+                ${photoContent}
+                <h4>${member.name}</h4>
+                <p>${member.department}</p>
+                <p class="member-role">${member.role}</p>
+            `;
+            
+            teamGrid.appendChild(memberElement);
+        });
+    }
 }
 
 // Üyelik formunu dinle
@@ -600,8 +503,15 @@ ideaForm.addEventListener('submit', (e) => {
         description: document.getElementById('ideaDescription').value,
         benefits: document.getElementById('ideaBenefits').value,
         resources: document.getElementById('ideaResources').value,
-        contact: document.getElementById('ideaContact').value
+        contact: document.getElementById('ideaContact').value,
+        date: new Date().toLocaleDateString('tr-TR')
     };
+
+    // Fikir önerilerini kaydet
+    const submissions = JSON.parse(localStorage.getItem('ideaSubmissions')) || [];
+    submissions.push(formData);
+    localStorage.setItem('ideaSubmissions', JSON.stringify(submissions));
+    saveUserData(); // Tüm site verilerini kaydet
 
     // E-posta gönderme fonksiyonu
     const mailtoLink = `mailto:yazilimkulubu@istanbularel.edu.tr?subject=Fikir Önerisi: ${encodeURIComponent(formData.title)}&body=
@@ -756,4 +666,397 @@ function updateDarkModeIcon() {
             icon.className = 'fas fa-moon';
         }
     }
-} 
+}
+
+// Profil Bölümü İşlevselliği
+const profileTabs = document.querySelectorAll('.tab-btn');
+const tabPanes = document.querySelectorAll('.tab-pane');
+const avatarInput = document.getElementById('avatarInput');
+const profileImage = document.getElementById('profileImage');
+const profileSettingsForm = document.getElementById('profileSettingsForm');
+
+// Tab değiştirme
+profileTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        // Aktif tab'ı güncelle
+        profileTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        // İlgili içeriği göster
+        const tabId = tab.getAttribute('data-tab');
+        tabPanes.forEach(pane => {
+            pane.classList.remove('active');
+            if (pane.id === tabId) {
+                pane.classList.add('active');
+            }
+        });
+    });
+});
+
+// Profil fotoğrafı yükleme
+avatarInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            profileImage.src = e.target.result;
+            // Burada fotoğrafı sunucuya yükleme işlemi yapılabilir
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Profil ayarları formu
+profileSettingsForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = {
+        name: document.getElementById('settingsName').value,
+        email: document.getElementById('settingsEmail').value,
+        department: document.getElementById('settingsDepartment').value,
+        bio: document.getElementById('settingsBio').value,
+        skills: document.getElementById('settingsSkills').value
+    };
+
+    // Burada form verilerini sunucuya gönderme işlemi yapılabilir
+    console.log('Profil güncelleme:', formData);
+    showNotification('Profil başarıyla güncellendi!', 'success');
+});
+
+// Örnek aktivite verileri
+const activities = [
+    {
+        type: 'workshop',
+        title: 'Python ile Veri Analizi',
+        date: '15 Mart 2024',
+        status: 'completed'
+    },
+    {
+        type: 'project',
+        title: 'Web Sitesi Geliştirme',
+        date: '10 Mart 2024',
+        status: 'in-progress'
+    }
+];
+
+// Aktiviteleri yükle
+function loadActivities() {
+    const activityList = document.querySelector('.activity-list');
+    if (activityList) {
+        activityList.innerHTML = activities.map(activity => `
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-${activity.type === 'workshop' ? 'chalkboard-teacher' : 'code'}"></i>
+                </div>
+                <div class="activity-info">
+                    <h4>${activity.title}</h4>
+                    <p>${activity.date}</p>
+                    <span class="status ${activity.status}">${activity.status === 'completed' ? 'Tamamlandı' : 'Devam Ediyor'}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+}
+
+// Sayfa yüklendiğinde aktiviteleri yükle
+document.addEventListener('DOMContentLoaded', () => {
+    loadActivities();
+    loadTeamMembers();
+    setActiveNavItem();
+    loadProjects(); // Projeleri yükle
+    
+    // Profil fotoğrafı yükleme
+    const avatarInput = document.getElementById('avatarInput');
+    const profileImage = document.getElementById('profileImage');
+    
+    if (avatarInput && profileImage) {
+        avatarInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+    
+    // Profil ayarları formu
+    const settingsForm = document.getElementById('profileSettingsForm');
+    if (settingsForm) {
+        settingsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Form verilerini işle
+            const formData = new FormData(settingsForm);
+            const settings = Object.fromEntries(formData.entries());
+            
+            // Profil bilgilerini güncelle
+            document.getElementById('profileName').textContent = settings.name;
+            document.getElementById('profileDepartment').textContent = settings.department;
+            document.getElementById('profileEmail').textContent = settings.email;
+            
+            // Başarı mesajı göster
+            alert('Profil ayarlarınız başarıyla güncellendi!');
+        });
+    }
+});
+
+// Aktif menü öğesini işaretle
+function setActiveNavItem() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (pageYOffset >= (sectionTop - sectionHeight/3)) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').substring(1) === current) {
+                link.classList.add('active');
+            }
+        });
+    });
+}
+
+// Projeler
+let projects = [];
+
+// Proje ekleme fonksiyonu
+function addProject(projectData) {
+    projects.push(projectData);
+    saveUserData();
+    displayProjects();
+}
+
+// Projeleri görüntüleme fonksiyonu
+function displayProjects() {
+    const projectsGrid = document.querySelector('.projects-grid');
+    if (!projectsGrid) return;
+
+    projectsGrid.innerHTML = '';
+    projects.forEach(project => {
+        const projectCard = document.createElement('div');
+        projectCard.className = 'project-card';
+        projectCard.innerHTML = `
+            <h3>${project.title}</h3>
+            <p>${project.description}</p>
+            <div class="project-meta">
+                <span class="project-language">${project.language}</span>
+                <span class="project-date">${project.date}</span>
+            </div>
+        `;
+        projectsGrid.appendChild(projectCard);
+    });
+}
+
+// Proje formu gönderimi
+const projectForm = document.getElementById('projectForm');
+if (projectForm) {
+    projectForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(projectForm);
+        const projectData = {
+            title: formData.get('title'),
+            description: formData.get('description'),
+            language: formData.get('language'),
+            date: new Date().toLocaleDateString('tr-TR')
+        };
+        addProject(projectData);
+        projectForm.reset();
+        showNotification('Proje başarıyla eklendi!', 'success');
+    });
+}
+
+// Tüm site verilerini kaydet
+function saveUserData() {
+    const siteData = {
+        profile: {
+            name: document.getElementById('profileName')?.textContent || '',
+            department: document.getElementById('profileDepartment')?.textContent || '',
+            email: document.getElementById('profileEmail')?.textContent || '',
+            photo: document.getElementById('profileImage')?.src || ''
+        },
+        activities: activities,
+        projects: projects,
+        teamMembers: JSON.parse(localStorage.getItem('teamMembers')) || [],
+        announcements: announcements,
+        events: Array.from(document.querySelectorAll('.events-grid > div')).map(event => ({
+            title: event.querySelector('h3')?.textContent || '',
+            date: event.querySelector('.date')?.textContent || '',
+            description: event.querySelector('p')?.textContent || '',
+            category: event.getAttribute('data-category') || 'all'
+        })),
+        theme: document.body.getAttribute('data-theme') || 'light',
+        newsletterSubscribers: JSON.parse(localStorage.getItem('newsletterSubscribers')) || [],
+        ideaSubmissions: JSON.parse(localStorage.getItem('ideaSubmissions')) || []
+    };
+    localStorage.setItem('siteData', JSON.stringify(siteData));
+}
+
+// Tüm site verilerini yükle
+function loadUserData() {
+    const siteData = JSON.parse(localStorage.getItem('siteData')) || {
+        profile: {
+            name: 'Kullanıcı Adı',
+            department: 'Bölüm',
+            email: 'E-posta',
+            photo: 'images/default-avatar.png'
+        },
+        activities: [],
+        projects: [],
+        teamMembers: [],
+        announcements: [],
+        events: [],
+        theme: 'light',
+        newsletterSubscribers: [],
+        ideaSubmissions: []
+    };
+
+    // Profil bilgilerini güncelle
+    if (document.getElementById('profileName')) {
+        document.getElementById('profileName').textContent = siteData.profile.name;
+    }
+    if (document.getElementById('profileDepartment')) {
+        document.getElementById('profileDepartment').textContent = siteData.profile.department;
+    }
+    if (document.getElementById('profileEmail')) {
+        document.getElementById('profileEmail').textContent = siteData.profile.email;
+    }
+    if (document.getElementById('profileImage')) {
+        document.getElementById('profileImage').src = siteData.profile.photo;
+    }
+
+    // Aktiviteleri güncelle
+    activities = siteData.activities;
+    loadActivities();
+
+    // Projeleri güncelle
+    projects = siteData.projects;
+    loadProjects();
+
+    // Takım üyelerini güncelle
+    localStorage.setItem('teamMembers', JSON.stringify(siteData.teamMembers));
+    loadTeamMembers();
+
+    // Duyuruları güncelle
+    announcements = siteData.announcements;
+    loadAnnouncements();
+
+    // Etkinlikleri güncelle
+    const eventsGrid = document.querySelector('.events-grid');
+    if (eventsGrid) {
+        eventsGrid.innerHTML = siteData.events.map(event => `
+            <div class="event-card" data-category="${event.category}">
+                <h3>${event.title}</h3>
+                <p class="date">${event.date}</p>
+                <p>${event.description}</p>
+            </div>
+        `).join('');
+    }
+
+    // Temayı güncelle
+    document.body.setAttribute('data-theme', siteData.theme);
+    updateDarkModeIcon();
+
+    // Bülten abonelerini güncelle
+    localStorage.setItem('newsletterSubscribers', JSON.stringify(siteData.newsletterSubscribers));
+
+    // Fikir önerilerini güncelle
+    localStorage.setItem('ideaSubmissions', JSON.stringify(siteData.ideaSubmissions));
+}
+
+// Profil ayarları formu
+const settingsForm = document.getElementById('profileSettingsForm');
+if (settingsForm) {
+    settingsForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // Form verilerini işle
+        const formData = new FormData(settingsForm);
+        const settings = Object.fromEntries(formData.entries());
+        
+        // Profil bilgilerini güncelle
+        document.getElementById('profileName').textContent = settings.name;
+        document.getElementById('profileDepartment').textContent = settings.department;
+        document.getElementById('profileEmail').textContent = settings.email;
+        
+        // Verileri kaydet
+        saveUserData();
+        
+        // Başarı mesajı göster
+        showNotification('Profil ayarlarınız başarıyla güncellendi!', 'success');
+    });
+}
+
+// Profil fotoğrafı yükleme
+const avatarInput = document.getElementById('avatarInput');
+const profileImage = document.getElementById('profileImage');
+
+if (avatarInput && profileImage) {
+    avatarInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                profileImage.src = e.target.result;
+                // Fotoğraf değiştiğinde verileri kaydet
+                saveUserData();
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+}
+
+// Üyelik formunu dinle
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Form verilerini al
+    const memberData = {
+        name: document.getElementById('regName').value,
+        department: document.getElementById('regDepartment').value,
+        email: document.getElementById('regEmail').value,
+        studentNo: document.getElementById('regStudentNo').value,
+        photo: document.getElementById('regPhoto').files[0]
+    };
+    
+    // Takıma ekle
+    addTeamMember(memberData);
+    
+    // Yeni aktivite ekle
+    const newActivity = {
+        type: 'join',
+        title: 'Kulübe Katılım',
+        date: new Date().toLocaleDateString('tr-TR'),
+        status: 'completed'
+    };
+    activities.push(newActivity);
+    
+    // Verileri kaydet
+    saveUserData();
+    
+    // Formu sıfırla
+    this.reset();
+    
+    // Modal'ı kapat
+    const registerModal = document.getElementById('registerModal');
+    registerModal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    
+    // Başarılı mesajı göster
+    showNotification('Üyeliğiniz başarıyla oluşturuldu!', 'success');
+});
+
+// Sayfa yüklendiğinde
+document.addEventListener('DOMContentLoaded', () => {
+    loadUserData(); // Tüm kullanıcı verilerini yükle
+    setActiveNavItem();
+}); 

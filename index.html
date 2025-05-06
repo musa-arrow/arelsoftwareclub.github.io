@@ -8,41 +8,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Config -->
     <script src="config.js"></script>
-    <!-- Google Maps API -->
-    <script>
-        function loadGoogleMapsAPI() {
-            const script = document.createElement('script');
-            script.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_API_KEY}&callback=initMap`;
-            script.async = true;
-            script.defer = true;
-            document.head.appendChild(script);
-        }
-        window.onload = loadGoogleMapsAPI;
-    </script>
 </head>
 <body>
     <!-- Header ve Navigasyon -->
     <header>
         <nav class="navbar">
-            <div class="logo">
-                <span>Arel Yazılım Kulübü</span>
+            <div class="nav-brand">
+                <img src="images/logo.png" alt="Logo">
+                <span>Yazılım Kulübü</span>
             </div>
             <div class="nav-links">
                 <a href="#home">Ana Sayfa</a>
                 <a href="#about">Hakkımızda</a>
                 <a href="#events">Etkinlikler</a>
-                <a href="#projects">Projeler</a>
-                <a href="#learning">Eğitim</a>
-                <a href="#join">Üyelik</a>
                 <a href="#team">Takım</a>
-                <a href="#contact">İletişim</a>
+                <a href="#profile">Profil</a>
             </div>
             <div class="auth-buttons">
                 <button id="loginBtn" class="login-btn">Giriş Yap</button>
                 <button id="registerBtn" class="join-btn">Üye Ol</button>
             </div>
             <button class="mobile-menu">
-                <i class="fas fa-bars"></i>
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
         </nav>
     </header>
@@ -101,14 +90,6 @@
         </div>
     </section>
 
-    <!-- Projeler -->
-    <section id="projects" class="projects">
-        <h2>Projelerimiz</h2>
-        <div class="projects-grid">
-            <!-- Projeler JavaScript ile doldurulacak -->
-        </div>
-    </section>
-
     <!-- Eğitim İçerikleri -->
     <section id="learning" class="learning">
         <h2>Eğitim İçerikleri</h2>
@@ -117,6 +98,88 @@
                 <h3>Uygulama Geliştirme</h3>
                 <div class="content-list">
                     <!-- İçerikler JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Takım -->
+    <section id="team" class="team">
+        <h2>Takımımız</h2>
+        <div class="team-grid">
+            <!-- Takım üyeleri JavaScript ile otomatik eklenecek -->
+        </div>
+    </section>
+
+    <!-- Profil -->
+    <section id="profile" class="profile">
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <img src="images/default-avatar.png" alt="Profil Fotoğrafı" id="profileImage">
+                    <div class="avatar-upload">
+                        <label for="avatarInput">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="avatarInput" accept="image/*" hidden>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profileName">Kullanıcı Adı</h2>
+                    <p id="profileDepartment">Bölüm</p>
+                    <p id="profileEmail">E-posta</p>
+                </div>
+            </div>
+            <div class="profile-content">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="activity">Aktivitelerim</button>
+                    <button class="tab-btn" data-tab="projects">Projelerim</button>
+                    <button class="tab-btn" data-tab="settings">Ayarlar</button>
+                </div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="activity">
+                        <h3>Son Aktivitelerim</h3>
+                        <div class="activity-list">
+                            <!-- Aktiviteler JavaScript ile doldurulacak -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="projects">
+                        <h3>Projelerim</h3>
+                        <div class="projects-list">
+                            <!-- Projeler JavaScript ile doldurulacak -->
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="settings">
+                        <h3>Profil Ayarları</h3>
+                        <form id="profileSettingsForm" class="settings-form">
+                            <div class="form-group">
+                                <label for="settingsName">Ad Soyad</label>
+                                <input type="text" id="settingsName" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsEmail">E-posta</label>
+                                <input type="email" id="settingsEmail" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsDepartment">Bölüm</label>
+                                <select id="settingsDepartment" name="department">
+                                    <option value="bilgisayar">Bilgisayar Mühendisliği</option>
+                                    <option value="yazilim">Yazılım Mühendisliği</option>
+                                    <option value="endustri">Endüstri Mühendisliği</option>
+                                    <option value="diger">Diğer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsBio">Hakkımda</label>
+                                <textarea id="settingsBio" name="bio" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsSkills">Yetenekler</label>
+                                <input type="text" id="settingsSkills" name="skills" placeholder="Yeteneklerinizi virgülle ayırın">
+                            </div>
+                            <button type="submit" class="save-settings-btn">Değişiklikleri Kaydet</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -164,17 +227,25 @@
                     </a>
                 </div>
             </div>
-            <div id="map" class="map">
-                <!-- Google Maps will be loaded here -->
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.2718448125847!2d28.49705177677734!3d41.05533297134467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55e9e8e4a4b1f%3A0x7c9d0b0b0b0b0b0b!2zxLBzdGFuYnVsIEFyZWwgw5xuaXZlcnNpdGVzaQ!5e0!3m2!1str!2str!4v1710000000000!5m2!1str!2str" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
     </section>
 
-    <!-- Takım -->
-    <section id="team" class="team">
-        <h2>Takımımız</h2>
-        <div class="team-grid">
-            <!-- Takım üyeleri JavaScript ile otomatik eklenecek -->
+    <!-- Projeler -->
+    <section id="projects" class="projects">
+        <h2>Projelerimiz</h2>
+        <div class="projects-grid">
+            <!-- Projeler JavaScript ile doldurulacak -->
         </div>
     </section>
 
