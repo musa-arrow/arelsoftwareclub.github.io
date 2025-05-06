@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yazılım Kulübü</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Config -->
+    <script src="config.js"></script>
+    <!-- Google Maps API -->
+    <script>
+        function loadGoogleMapsAPI() {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${CONFIG.GOOGLE_MAPS_API_KEY}&callback=initMap`;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+        window.onload = loadGoogleMapsAPI;
+    </script>
+</head>
+<body>
+    <!-- Header ve Navigasyon -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <span>Arel Yazılım Kulübü</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Ana Sayfa</a>
+                <a href="#about">Hakkımızda</a>
+                <a href="#events">Etkinlikler</a>
+                <a href="#projects">Projeler</a>
+                <a href="#learning">Eğitim</a>
+                <a href="#join">Üyelik</a>
+                <a href="#team">Takım</a>
+                <a href="#contact">İletişim</a>
+            </div>
+            <div class="auth-buttons">
+                <button id="loginBtn" class="login-btn">Giriş Yap</button>
+                <button id="registerBtn" class="join-btn">Üye Ol</button>
+            </div>
+            <button class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Ana Sayfa -->
+    <section id="home" class="hero">
+        <div class="hero-background-logo"></div>
+        <div class="hero-content">
+            <h1>Yazılım Kulübüne Hoş Geldiniz</h1>
+            <p>Teknoloji, inovasyon ve yazılım dünyasına adım atın</p>
+            <div class="hero-buttons">
+                <button id="heroJoinBtn" class="primary-btn" onclick="document.getElementById('join').scrollIntoView({behavior: 'smooth'})">Hemen Katıl</button>
+                <button class="secondary-btn" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Daha Fazla Bilgi</button>
+            </div>
+        </div>
+        <div class="hero-slider">
+            <!-- Slider içeriği JavaScript ile doldurulacak -->
+        </div>
+    </section>
+
+    <!-- Duyurular -->
+    <section class="announcements">
+        <h2>Son Duyurular</h2>
+        <div class="announcement-grid">
+        </div>
+    </section>
+
+    <!-- Hakkımızda -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>Hakkımızda</h2>
+            <div class="mission-vision">
+                <div class="mission">
+                    <h3>Misyonumuz</h3>
+                    <p>Yazılım dünyasında öncü ve yenilikçi çözümler üreten bireyler yetiştirmek.</p>
+                </div>
+                <div class="vision">
+                    <h3>Vizyonumuz</h3>
+                    <p>Teknoloji ekosisteminde sürdürülebilir bir topluluk oluşturmak.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Etkinlikler -->
+    <section id="events" class="events">
+        <h2>Etkinlikler</h2>
+        <div class="event-filters">
+            <button class="filter-btn active" data-filter="all">Tümü</button>
+            <button class="filter-btn" data-filter="workshop">Workshop</button>
+            <button class="filter-btn" data-filter="seminar">Seminer</button>
+            <button class="filter-btn" data-filter="hackathon">Hackathon</button>
+        </div>
+        <div class="events-grid">
+            <!-- Etkinlikler JavaScript ile doldurulacak -->
+        </div>
+    </section>
+
+    <!-- Projeler -->
+    <section id="projects" class="projects">
+        <h2>Projelerimiz</h2>
+        <div class="projects-grid">
+            <!-- Projeler JavaScript ile doldurulacak -->
+        </div>
+    </section>
+
+    <!-- Eğitim İçerikleri -->
+    <section id="learning" class="learning">
+        <h2>Eğitim İçerikleri</h2>
+        <div class="learning-categories">
+            <div class="category">
+                <h3>Uygulama Geliştirme</h3>
+                <div class="content-list">
+                    <!-- İçerikler JavaScript ile doldurulacak -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Üyelik -->
+    <section id="join" class="join">
+        <h2>Bize Katılın</h2>
+        <form id="membership-form" class="membership-form">
+            <input type="text" placeholder="Adınız Soyadınız" required>
+            <input type="email" placeholder="E-posta Adresiniz" required>
+            <select required>
+                <option value="">Alanınızı Seçin</option>
+                <option value="frontend">Frontend Geliştirme</option>
+                <option value="backend">Backend Geliştirme</option>
+                <option value="mobile">Mobil Geliştirme</option>
+                <option value="ai">Yapay Zeka</option>
+            </select>
+            <textarea placeholder="Neden katılmak istiyorsunuz?" required></textarea>
+            <button type="submit">Başvuru Yap</button>
+        </form>
+    </section>
+
+    <!-- İletişim -->
+    <section id="contact" class="contact">
+        <h2>İletişim</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>yazilimkulubu@istanbularel.edu.tr</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>İstanbul Arel Üniversitesi Kampüsü</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://chat.whatsapp.com/KYyuoRbyu679hryJRJPSbq" target="_blank" class="whatsapp-link">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp Grubumuza Katılın</span>
+                    </a>
+                    <a href="https://www.instagram.com/arel.yazilim" target="_blank" class="instagram-link">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram'da Takip Edin</span>
+                    </a>
+                </div>
+            </div>
+            <div id="map" class="map">
+                <!-- Google Maps will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Takım -->
+    <section id="team" class="team">
+        <h2>Takımımız</h2>
+        <div class="team-grid">
+            <!-- Takım üyeleri JavaScript ile otomatik eklenecek -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Hızlı Bağlantılar</h3>
+                <ul>
+                    <li><a href="#about">Hakkımızda</a></li>
+                    <li><a href="#events">Etkinlikler</a></li>
+                    <li><a href="#projects">Projeler</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Bülten</h3>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresiniz">
+                    <button type="submit">Abone Ol</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yazılım Kulübü. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- Dark Mode Toggle -->
+    <button id="dark-mode-toggle" class="dark-mode-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Giriş Yap</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">E-posta</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Şifre</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="remember">
+                        <span class="checkmark"></span>
+                        Beni hatırla
+                    </label>
+                </div>
+                <button type="submit" class="login-submit-btn">Giriş Yap</button>
+                <div class="form-footer">
+                    <a href="#" class="forgot-password">Şifremi Unuttum</a>
+                    <p>Hesabınız yok mu? <a href="#" class="register-link">Üye Ol</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Üye Ol</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="regUsername">Kullanıcı Adı</label>
+                    <input type="text" id="regUsername" name="username" required>
+                    <small class="username-hint">Kullanıcı adınız diğer üyeler tarafından görünecektir</small>
+                </div>
+                <div class="form-group">
+                    <label for="regName">Ad Soyad</label>
+                    <input type="text" id="regName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">E-posta</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regStudentNo">Öğrenci Numarası</label>
+                    <input type="text" id="regStudentNo" name="studentNo" required>
+                </div>
+                <div class="form-group">
+                    <label for="regDepartment">Bölüm</label>
+                    <select id="regDepartment" name="department" required>
+                        <option value="">Bölüm Seçin</option>
+                        <option value="bilgisayar">Bilgisayar Mühendisliği</option>
+                        <option value="yazilim">Yazılım Mühendisliği</option>
+                        <option value="endustri">Endüstri Mühendisliği</option>
+                        <option value="diger">Diğer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="regPhoto">Profil Fotoğrafı</label>
+                    <input type="file" id="regPhoto" name="photo" accept="image/*">
+                    <small class="photo-hint">Fotoğraf yüklemezseniz varsayılan profil fotoğrafı kullanılacaktır</small>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Şifre</label>
+                    <input type="password" id="regPassword" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPasswordConfirm">Şifre Tekrar</label>
+                    <input type="password" id="regPasswordConfirm" name="passwordConfirm" required>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" name="terms" required>
+                        <span class="checkmark"></span>
+                        <a href="#" class="terms-link">Üyelik Sözleşmesi</a>'ni okudum ve kabul ediyorum
+                    </label>
+                </div>
+                <button type="submit" class="register-submit-btn">Üye Ol</button>
+                <div class="form-footer">
+                    <p>Zaten üye misiniz? <a href="#" class="login-link">Giriş Yap</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fikir Gönderme Modal -->
+    <div id="ideaModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Fikir Gönder</h2>
+            <form id="ideaForm">
+                <div class="form-group">
+                    <label for="ideaTitle">Fikir Başlığı</label>
+                    <input type="text" id="ideaTitle" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="ideaCategory">Kategori</label>
+                    <select id="ideaCategory" name="category" required>
+                        <option value="">Kategori Seçin</option>
+                        <option value="proje">Proje Fikri</option>
+                        <option value="etkinlik">Etkinlik Önerisi</option>
+                        <option value="egitim">Eğitim İçeriği</option>
+                        <option value="diger">Diğer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ideaDescription">Fikir Açıklaması</label>
+                    <textarea id="ideaDescription" name="description" rows="5" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ideaBenefits">Faydaları</label>
+                    <textarea id="ideaBenefits" name="benefits" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ideaResources">Gerekli Kaynaklar</label>
+                    <textarea id="ideaResources" name="resources" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ideaContact">İletişim Bilgileri</label>
+                    <input type="email" id="ideaContact" name="contact" value="yazilimkulubu@istanbularel.edu.tr" readonly>
+                </div>
+                <button type="submit" class="idea-submit-btn">Fikri Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fikir Gönderme Butonu -->
+    <button id="ideaButton" class="floating-button">
+        <i class="fas fa-lightbulb"></i>
+        <span>Fikir Gönder</span>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html> 
