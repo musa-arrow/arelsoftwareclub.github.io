@@ -3,420 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yazılım Kulübü</title>
+    <title>AREL Yazılım Kulübü</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Config -->
-    <script src="config.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Header ve Navigasyon -->
-    <header>
-        <nav class="navbar">
-            <div class="nav-brand">
-                <img src="images/logo.png" alt="Logo">
-                <span>Yazılım Kulübü</span>
-            </div>
-            <div class="nav-links">
-                <a href="#home">Ana Sayfa</a>
-                <a href="#about">Hakkımızda</a>
-                <a href="#events">Etkinlikler</a>
-                <a href="#team">Takım</a>
-                <a href="#profile">Profil</a>
-            </div>
-            <div class="auth-buttons">
-                <button id="loginBtn" class="login-btn">Giriş Yap</button>
-                <button id="registerBtn" class="join-btn">Üye Ol</button>
-            </div>
-            <button class="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </header>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
 
-    <!-- Ana Sayfa -->
+    <!-- Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo" data-aos="fade-right">
+                <span class="logo-text">AREL Yazılım Kulübü</span>
+                <span class="logo-dot"></span>
+            </a>
+            <div class="nav-links" data-aos="fade-left">
+                <a href="#home" class="nav-link">Ana Sayfa</a>
+                <a href="#about" class="nav-link">Hakkımızda</a>
+                <a href="#events" class="nav-link">Etkinlikler</a>
+                <a href="#projects" class="nav-link">Projeler</a>
+                <a href="#team" class="nav-link">Ekibimiz</a>
+                <a href="#contact" class="nav-link">İletişim</a>
+            </div>
+            <div class="nav-buttons">
+                <button class="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
     <section id="home" class="hero">
-        <div class="hero-background-logo"></div>
         <div class="hero-content">
-            <h1>Yazılım Kulübüne Hoş Geldiniz</h1>
-            <p>Teknoloji, inovasyon ve yazılım dünyasına adım atın</p>
-            <div class="hero-buttons">
-                <button id="heroJoinBtn" class="primary-btn" onclick="document.getElementById('join').scrollIntoView({behavior: 'smooth'})">Hemen Katıl</button>
-                <button class="secondary-btn" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Daha Fazla Bilgi</button>
+            <h1 class="glitch-text" data-aos="fade-up">AREL Yazılım Kulübü</h1>
+            <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="200">Geleceğin Teknolojilerini Bugünden Keşfedin</p>
+            <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+                <a href="#about" class="btn btn-primary">Keşfet</a>
+                <a href="#contact" class="btn btn-secondary">Bize Katıl</a>
             </div>
         </div>
-        <div class="hero-slider">
-            <!-- Slider içeriği JavaScript ile doldurulacak -->
+        <div class="hero-visual">
+            <div class="floating-elements">
+                <div class="floating-element" data-speed="2"></div>
+                <div class="floating-element" data-speed="4"></div>
+                <div class="floating-element" data-speed="6"></div>
+            </div>
         </div>
     </section>
 
-    <!-- Duyurular -->
-    <section class="announcements">
-        <h2>Son Duyurular</h2>
-        <div class="announcement-grid">
-        </div>
-    </section>
-
-    <!-- Hakkımızda -->
+    <!-- About Section -->
     <section id="about" class="about">
-        <div class="about-content">
+        <div class="section-header" data-aos="fade-up">
             <h2>Hakkımızda</h2>
-            <div class="mission-vision">
-                <div class="mission">
-                    <h3>Misyonumuz</h3>
-                    <p>Yazılım dünyasında öncü ve yenilikçi çözümler üreten bireyler yetiştirmek.</p>
+            <div class="section-line"></div>
+        </div>
+        <div class="about-content">
+            <div class="about-text" data-aos="fade-right">
+                <p>AREL Yazılım Kulübü, teknoloji tutkunlarını bir araya getiren, yenilikçi projeler geliştiren ve sürekli öğrenmeyi teşvik eden bir topluluktur.</p>
+                <div class="stats">
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span class="stat-label">Üye</span>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                        <span class="stat-number" data-count="2">0</span>
+                        <span class="stat-label">Proje</span>
+                    </div>
+                    <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                        <span class="stat-number" data-count="1">0</span>
+                        <span class="stat-label">Etkinlik</span>
+                    </div>
                 </div>
-                <div class="vision">
-                    <h3>Vizyonumuz</h3>
-                    <p>Teknoloji ekosisteminde sürdürülebilir bir topluluk oluşturmak.</p>
+            </div>
+            <div class="about-image" data-aos="fade-left">
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3" alt="Team Collaboration">
+                    <div class="image-overlay"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Etkinlikler -->
+    <!-- Events Section -->
     <section id="events" class="events">
-        <h2>Etkinlikler</h2>
-        <div class="event-filters">
-            <button class="filter-btn active" data-filter="all">Tümü</button>
-            <button class="filter-btn" data-filter="workshop">Workshop</button>
-            <button class="filter-btn" data-filter="seminar">Seminer</button>
-            <button class="filter-btn" data-filter="hackathon">Hackathon</button>
+        <div class="section-header" data-aos="fade-up">
+            <h2>Etkinliklerimiz</h2>
+            <div class="section-line"></div>
         </div>
         <div class="events-grid">
-            <!-- Etkinlikler JavaScript ile doldurulacak -->
-        </div>
-    </section>
-
-    <!-- Eğitim İçerikleri -->
-    <section id="learning" class="learning">
-        <h2>Eğitim İçerikleri</h2>
-        <div class="learning-categories">
-            <div class="category">
-                <h3>Uygulama Geliştirme</h3>
-                <div class="content-list">
-                    <!-- İçerikler JavaScript ile doldurulacak -->
+            <div class="event-card" data-aos="flip-left" onclick="openEventModal('event1')">
+                <div class="event-image">
+                    <img src="photo.jpg" alt="AREL Yazılım Kulübü Etkinlikleri">
+                </div>
+                <div class="event-content">
+                    <h3>AREL Yazılım Kulübü</h3>
+                    <p>Yazılım, teknoloji ve inovasyon alanında düzenlediğimiz workshop'lar, seminerler ve etkinliklerle öğrencilerimizi geleceğe hazırlıyoruz.</p>
+                    <div class="event-footer">
+                        <span class="event-date">15 Mart 2024</span>
+                        <button class="btn btn-outline">Detaylar</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Takım -->
+    <!-- Event Modal -->
+    <div id="eventModal" class="event-modal">
+        <div class="event-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="event-modal-body">
+                <div class="event-modal-image">
+                    <img src="photo.jpg" alt="AREL Yazılım Kulübü Etkinlikleri">
+                </div>
+                <div class="event-modal-info">
+                    <h2>AREL Yazılım Kulübü Etkinlikleri</h2>
+                    <div class="event-modal-details">
+                        <p><i class="far fa-calendar-alt"></i> Tarih: 15 Mart 2024</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Konum: Tepekent Kampüsü</p>
+                        <p><i class="fas fa-clock"></i> Saat: 14:00 - 17:00</p>
+                    </div>
+                    <div class="event-modal-description">
+                        <h3>Etkinlik Detayları</h3>
+                        <p>Yazılım, teknoloji ve inovasyon alanında düzenlediğimiz workshop'lar, seminerler ve etkinliklerle öğrencilerimizi geleceğe hazırlıyoruz. Bu etkinlikte:</p>
+                        <ul>
+                            <li>Web Geliştirme Workshop'u</li>
+                            <li>Mobil Uygulama Geliştirme Semineri</li>
+                            <li>Yapay Zeka ve Makine Öğrenmesi Sunumu</li>
+                            <li>Networking Fırsatı</li>
+                        </ul>
+                        <p>Katılım için kayıt yaptırmanız gerekmektedir. Kontenjan sınırlıdır.</p>
+                    </div>
+                    <div class="event-modal-footer">
+                        <a href="https://www.instagram.com/arel.yazilim" target="_blank" class="btn btn-primary">Kayıt Ol</a>
+                        <a href="https://chat.whatsapp.com/KYyuoRbyu679hryJRJPSbq" target="_blank" class="btn btn-secondary">WhatsApp Grubu</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Projelerimiz</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card" data-aos="zoom-in">
+                <div class="project-image">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3" alt="Project">
+                    <div class="project-overlay">
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-content">
+                    <h3>AREL Portal</h3>
+                    <p>Üyelerimiz için özel geliştirilmiş portal uygulaması.</p>
+                    <a href="#" class="btn btn-outline">İncele</a>
+                </div>
+            </div>
+            <!-- More project cards will be added dynamically -->
+        </div>
+    </section>
+
+    <!-- Team Section -->
     <section id="team" class="team">
-        <h2>Takımımız</h2>
+        <div class="section-header" data-aos="fade-up">
+            <h2>Ekibimiz</h2>
+            <div class="section-line"></div>
+        </div>
         <div class="team-grid">
-            <!-- Takım üyeleri JavaScript ile otomatik eklenecek -->
-        </div>
-    </section>
-
-    <!-- Profil -->
-    <section id="profile" class="profile">
-        <div class="profile-container">
-            <div class="profile-header">
-                <div class="profile-avatar">
-                    <img src="images/default-avatar.png" alt="Profil Fotoğrafı" id="profileImage">
-                    <div class="avatar-upload">
-                        <label for="avatarInput">
-                            <i class="fas fa-camera"></i>
-                        </label>
-                        <input type="file" id="avatarInput" accept="image/*" hidden>
+            <div class="team-member" data-aos="fade-up">
+                <div class="member-image">
+                    <img src="kulüplideri.png" alt="Kerim Karadağ">
+                    <div class="member-social">
+                        <a href="https://wa.me/905348479086" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                <div class="profile-info">
-                    <h2 id="profileName">Kullanıcı Adı</h2>
-                    <p id="profileDepartment">Bölüm</p>
-                    <p id="profileEmail">E-posta</p>
+                <div class="member-info">
+                    <h3>Kerim Karadağ</h3>
+                    <p>Kulüp Başkanı</p>
                 </div>
             </div>
-            <div class="profile-content">
-                <div class="profile-tabs">
-                    <button class="tab-btn active" data-tab="activity">Aktivitelerim</button>
-                    <button class="tab-btn" data-tab="projects">Projelerim</button>
-                    <button class="tab-btn" data-tab="settings">Ayarlar</button>
+            <div class="team-member" data-aos="fade-up">
+                <div class="member-image">
+                    <img src="eren.png" alt="Eren">
+                    <div class="member-social">
+                        <a href="https://wa.me/905307841634" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
                 </div>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="activity">
-                        <h3>Son Aktivitelerim</h3>
-                        <div class="activity-list">
-                            <!-- Aktiviteler JavaScript ile doldurulacak -->
-                        </div>
+                <div class="member-info">
+                    <h3>Eren</h3>
+                    <p>Başkan Yardımcısı</p>
+                </div>
+            </div>
+            <div class="team-member" data-aos="fade-up">
+                <div class="member-image">
+                    <img src="musa.jpg" alt="Musa Ok">
+                    <div class="member-social">
+                        <a href="https://github.com/musa-arrow" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/musa-ok-416671351/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/905454117205" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                    <div class="tab-pane" id="projects">
-                        <h3>Projelerim</h3>
-                        <div class="projects-list">
-                            <!-- Projeler JavaScript ile doldurulacak -->
-                        </div>
+                </div>
+                <div class="member-info">
+                    <h3>Musa Ok</h3>
+                    <p>Web Tasarımcı</p>
+                </div>
+            </div>
+            <div class="team-member" data-aos="fade-up">
+                <div class="member-image">
+                    <img src="arda.png" alt="Arda Abacı">
+                    <div class="member-social">
+                        <a href="https://wa.me/905464316798" target="_blank"><i class="fab fa-whatsapp"></i></a>
                     </div>
-                    <div class="tab-pane" id="settings">
-                        <h3>Profil Ayarları</h3>
-                        <form id="profileSettingsForm" class="settings-form">
-                            <div class="form-group">
-                                <label for="settingsName">Ad Soyad</label>
-                                <input type="text" id="settingsName" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="settingsEmail">E-posta</label>
-                                <input type="email" id="settingsEmail" name="email">
-                            </div>
-                            <div class="form-group">
-                                <label for="settingsDepartment">Bölüm</label>
-                                <select id="settingsDepartment" name="department">
-                                    <option value="bilgisayar">Bilgisayar Mühendisliği</option>
-                                    <option value="yazilim">Yazılım Mühendisliği</option>
-                                    <option value="endustri">Endüstri Mühendisliği</option>
-                                    <option value="diger">Diğer</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="settingsBio">Hakkımda</label>
-                                <textarea id="settingsBio" name="bio" rows="4"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="settingsSkills">Yetenekler</label>
-                                <input type="text" id="settingsSkills" name="skills" placeholder="Yeteneklerinizi virgülle ayırın">
-                            </div>
-                            <button type="submit" class="save-settings-btn">Değişiklikleri Kaydet</button>
-                        </form>
+                </div>
+                <div class="member-info">
+                    <h3>Arda Abacı</h3>
+                    <p>Web Tasarımcı</p>
+                </div>
+            </div>
+            <div class="team-member" data-aos="fade-up">
+                <div class="member-image">
+                    <div class="member-icon">
+                        <i class="fas fa-user-tie"></i>
                     </div>
+                    <div class="member-social">
+                        <a href="https://wa.me/905425762507" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3>Şahin Kara</h3>
+                    <p>Sosyal Medya Yöneticisi</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Üyelik -->
-    <section id="join" class="join">
-        <h2>Bize Katılın</h2>
-        <form id="membership-form" class="membership-form">
-            <input type="text" placeholder="Adınız Soyadınız" required>
-            <input type="email" placeholder="E-posta Adresiniz" required>
-            <select required>
-                <option value="">Alanınızı Seçin</option>
-                <option value="frontend">Frontend Geliştirme</option>
-                <option value="backend">Backend Geliştirme</option>
-                <option value="mobile">Mobil Geliştirme</option>
-                <option value="ai">Yapay Zeka</option>
-            </select>
-            <textarea placeholder="Neden katılmak istiyorsunuz?" required></textarea>
-            <button type="submit">Başvuru Yap</button>
-        </form>
-    </section>
-
-    <!-- İletişim -->
+    <!-- Contact Section -->
     <section id="contact" class="contact">
-        <h2>İletişim</h2>
+        <div class="section-header" data-aos="fade-up">
+            <h2>İletişim</h2>
+            <div class="section-line"></div>
+        </div>
         <div class="contact-container">
-            <div class="contact-info">
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <p>yazilimkulubu@istanbularel.edu.tr</p>
-                </div>
+            <div class="contact-info" data-aos="fade-right">
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
-                    <p>İstanbul Arel Üniversitesi Kampüsü</p>
+                    <div>
+                        <h3>Adres</h3>
+                        <a href="https://maps.google.com/?q=İstanbul+Arel+Üniversitesi+Tepekent+Kampüsü" target="_blank" class="contact-link">
+                            İstanbul Arel Üniversitesi Tepekent Kampüsü
+                        </a>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <a href="mailto:yazilimkulubu@istanbularel.edu.tr" class="contact-link">
+                            yazilimkulubu@istanbularel.edu.tr
+                        </a>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <h3>Telefon</h3>
+                        <a href="tel:+905348479086" class="contact-link">
+                            +90 534 847 90 86
+                        </a>
+                    </div>
                 </div>
                 <div class="social-links">
-                    <a href="https://chat.whatsapp.com/KYyuoRbyu679hryJRJPSbq" target="_blank" class="whatsapp-link">
-                        <i class="fab fa-whatsapp"></i>
-                        <span>WhatsApp Grubumuza Katılın</span>
-                    </a>
-                    <a href="https://www.instagram.com/arel.yazilim" target="_blank" class="instagram-link">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram'da Takip Edin</span>
-                    </a>
+                    <a href="https://www.instagram.com/arel.yazilim" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="https://chat.whatsapp.com/KYyuoRbyu679hryJRJPSbq" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
-            <div class="map-container">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3010.2718448125847!2d28.49705177677734!3d41.05533297134467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55e9e8e4a4b1f%3A0x7c9d0b0b0b0b0b0b!2zxLBzdGFuYnVsIEFyZWwgw5xuaXZlcnNpdGVzaQ!5e0!3m2!1str!2str!4v1710000000000!5m2!1str!2str" 
-                    width="100%" 
-                    height="400" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projeler -->
-    <section id="projects" class="projects">
-        <h2>Projelerimiz</h2>
-        <div class="projects-grid">
-            <!-- Projeler JavaScript ile doldurulacak -->
+            <form class="contact-form" data-aos="fade-left" id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" required>
+                    <label for="name">Adınız Soyadınız</label>
+                    <div class="form-line"></div>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email Adresiniz</label>
+                    <div class="form-line"></div>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" required>
+                    <label for="phone">Telefon Numaranız</label>
+                    <div class="form-line"></div>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" required></textarea>
+                    <label for="message">Mesajınız</label>
+                    <div class="form-line"></div>
+                </div>
+                <button type="submit" class="btn btn-primary">Gönder</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>Hızlı Bağlantılar</h3>
-                <ul>
-                    <li><a href="#about">Hakkımızda</a></li>
-                    <li><a href="#events">Etkinlikler</a></li>
-                    <li><a href="#projects">Projeler</a></li>
-                    <li><a href="#contact">İletişim</a></li>
-                </ul>
+            <div class="footer-logo">
+                <span class="logo-text">AREL</span>
+                <span class="logo-dot"></span>
             </div>
-            <div class="footer-section">
-                <h3>Bülten</h3>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="E-posta adresiniz">
-                    <button type="submit">Abone Ol</button>
-                </form>
+            <p class="footer-text">Geleceğin teknolojilerini bugünden keşfediyoruz.</p>
+            <div class="footer-links">
+                <a href="#home">Ana Sayfa</a>
+                <a href="#about">Hakkımızda</a>
+                <a href="#events">Etkinlikler</a>
+                <a href="#projects">Projeler</a>
+                <a href="#team">Ekibimiz</a>
+                <a href="#contact">İletişim</a>
+                <a href="mailto:yazilimkulubu@istanbularel.edu.tr">Email</a>
+                <a href="https://www.instagram.com/arel.yazilim" target="_blank">Instagram</a>
+                <a href="https://chat.whatsapp.com/KYyuoRbyu679hryJRJPSbq" target="_blank">WhatsApp</a>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Yazılım Kulübü. Tüm hakları saklıdır.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AREL Yazılım Kulübü. Tüm hakları saklıdır.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Dark Mode Toggle -->
-    <button id="dark-mode-toggle" class="dark-mode-toggle">
-        <i class="fas fa-moon"></i>
-    </button>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Event Modal Functions
+        function openEventModal(eventId) {
+            const modal = document.getElementById('eventModal');
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Giriş Yap</h2>
-            <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail">E-posta</label>
-                    <input type="email" id="loginEmail" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Şifre</label>
-                    <input type="password" id="loginPassword" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-container">
-                        <input type="checkbox" name="remember">
-                        <span class="checkmark"></span>
-                        Beni hatırla
-                    </label>
-                </div>
-                <button type="submit" class="login-submit-btn">Giriş Yap</button>
-                <div class="form-footer">
-                    <a href="#" class="forgot-password">Şifremi Unuttum</a>
-                    <p>Hesabınız yok mu? <a href="#" class="register-link">Üye Ol</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
+        // Close modal when clicking the close button or outside the modal
+        document.querySelector('.close-modal').onclick = function() {
+            document.getElementById('eventModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
 
-    <!-- Register Modal -->
-    <div id="registerModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Üye Ol</h2>
-            <form id="registerForm">
-                <div class="form-group">
-                    <label for="regUsername">Kullanıcı Adı</label>
-                    <input type="text" id="regUsername" name="username" required>
-                    <small class="username-hint">Kullanıcı adınız diğer üyeler tarafından görünecektir</small>
-                </div>
-                <div class="form-group">
-                    <label for="regName">Ad Soyad</label>
-                    <input type="text" id="regName" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="regEmail">E-posta</label>
-                    <input type="email" id="regEmail" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="regStudentNo">Öğrenci Numarası</label>
-                    <input type="text" id="regStudentNo" name="studentNo" required>
-                </div>
-                <div class="form-group">
-                    <label for="regDepartment">Bölüm</label>
-                    <select id="regDepartment" name="department" required>
-                        <option value="">Bölüm Seçin</option>
-                        <option value="bilgisayar">Bilgisayar Mühendisliği</option>
-                        <option value="yazilim">Yazılım Mühendisliği</option>
-                        <option value="endustri">Endüstri Mühendisliği</option>
-                        <option value="diger">Diğer</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="regPhoto">Profil Fotoğrafı</label>
-                    <input type="file" id="regPhoto" name="photo" accept="image/*">
-                    <small class="photo-hint">Fotoğraf yüklemezseniz varsayılan profil fotoğrafı kullanılacaktır</small>
-                </div>
-                <div class="form-group">
-                    <label for="regPassword">Şifre</label>
-                    <input type="password" id="regPassword" name="password" required>
-                </div>
-                <div class="form-group">
-                    <label for="regPasswordConfirm">Şifre Tekrar</label>
-                    <input type="password" id="regPasswordConfirm" name="passwordConfirm" required>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-container">
-                        <input type="checkbox" name="terms" required>
-                        <span class="checkmark"></span>
-                        <a href="#" class="terms-link">Üyelik Sözleşmesi</a>'ni okudum ve kabul ediyorum
-                    </label>
-                </div>
-                <button type="submit" class="register-submit-btn">Üye Ol</button>
-                <div class="form-footer">
-                    <p>Zaten üye misiniz? <a href="#" class="login-link">Giriş Yap</a></p>
-                </div>
-            </form>
-        </div>
-    </div>
+        window.onclick = function(event) {
+            const modal = document.getElementById('eventModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
 
-    <!-- Fikir Gönderme Modal -->
-    <div id="ideaModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h2>Fikir Gönder</h2>
-            <form id="ideaForm">
-                <div class="form-group">
-                    <label for="ideaTitle">Fikir Başlığı</label>
-                    <input type="text" id="ideaTitle" name="title" required>
-                </div>
-                <div class="form-group">
-                    <label for="ideaCategory">Kategori</label>
-                    <select id="ideaCategory" name="category" required>
-                        <option value="">Kategori Seçin</option>
-                        <option value="proje">Proje Fikri</option>
-                        <option value="etkinlik">Etkinlik Önerisi</option>
-                        <option value="egitim">Eğitim İçeriği</option>
-                        <option value="diger">Diğer</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ideaDescription">Fikir Açıklaması</label>
-                    <textarea id="ideaDescription" name="description" rows="5" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="ideaBenefits">Faydaları</label>
-                    <textarea id="ideaBenefits" name="benefits" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="ideaResources">Gerekli Kaynaklar</label>
-                    <textarea id="ideaResources" name="resources" rows="3"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="ideaContact">İletişim Bilgileri</label>
-                    <input type="email" id="ideaContact" name="contact" value="yazilimkulubu@istanbularel.edu.tr" readonly>
-                </div>
-                <button type="submit" class="idea-submit-btn">Fikri Gönder</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Fikir Gönderme Butonu -->
-    <button id="ideaButton" class="floating-button">
-        <i class="fas fa-lightbulb"></i>
-        <span>Fikir Gönder</span>
-    </button>
-
+        // EmailJS initialization
+        (function() {
+            emailjs.init("YOUR_USER_ID");
+        })();
+    </script>
     <script src="script.js"></script>
 </body>
 </html> 
